@@ -10,7 +10,7 @@ public enum ItemType implements BaseEnum {
 
     APARTMENT(1, "公寓"),
 
-   ROOM(2, "房间"),
+   ROOM(2, "房间");
 
 
 
