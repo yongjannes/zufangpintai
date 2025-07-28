@@ -1,6 +1,10 @@
 server:
   port: 8080
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   data:
     redis:
       host: 192.168.16.6
@@ -45,6 +49,5 @@ minio:
 
 springdoc:
   default-flat-param-object: true
-
 
 
