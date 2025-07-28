@@ -1,6 +1,9 @@
 server:
   port: 8080
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   datasource:
     url: jdbc:mysql://192.168.16.6:3306/lease?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2b8
     username: root
@@ -35,3 +38,4 @@ minio:
 
 springdoc:
   default-flat-param-object: true
+
