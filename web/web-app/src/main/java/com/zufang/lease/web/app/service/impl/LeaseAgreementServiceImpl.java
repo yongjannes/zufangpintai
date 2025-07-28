@@ -1,10 +1,15 @@
 package com.zufang.lease.web.app.service.impl;
 
 import com.zufang.lease.model.entity.LeaseAgreement;
+import com.zufang.lease.model.entity.LeaseTerm;
 import com.zufang.lease.web.app.mapper.LeaseAgreementMapper;
+import com.zufang.lease.web.app.mapper.LeaseTermMapper;
 import com.zufang.lease.web.app.service.LeaseAgreementService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author liubo
@@ -15,6 +20,13 @@ import org.springframework.stereotype.Service;
 public class LeaseAgreementServiceImpl extends ServiceImpl<LeaseAgreementMapper, LeaseAgreement>
         implements LeaseAgreementService {
 
+    @Autowired
+    private LeaseTermMapper leaseTermMapper;
+
+    @Override
+    public List<LeaseTerm> listByRoomId(Long id) {
+        return leaseTermMapper.selectListByRoomId(id);
+    }
 }
 
 
