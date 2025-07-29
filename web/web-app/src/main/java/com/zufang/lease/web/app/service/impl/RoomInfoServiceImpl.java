@@ -67,7 +67,7 @@ public class RoomInfoServiceImpl extends ServiceImpl<RoomInfoMapper, RoomInfo>
     private BrowsingHistoryService browsingHistoryService;
 
     @Autowired
-    private RedisTemplate<String, Object> stringObjectRedisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Override
     public IPage<RoomItemVo> pageItem(Page<RoomItemVo> page, RoomQueryVo queryVo) {
@@ -83,7 +83,7 @@ public class RoomInfoServiceImpl extends ServiceImpl<RoomInfoMapper, RoomInfo>
     public RoomDetailVo getDetailById(Long id) {
 
         String key = RedisConstant.APP_ROOM_PREFIX + id;
-        RoomDetailVo roomDetailVo = (RoomDetailVo) stringObjectRedisTemplate.opsForValue().get(key);
+        RoomDetailVo roomDetailVo = (RoomDetailVo) redisTemplate.opsForValue().get(key);
 
         if (roomDetailVo == null) {
             System.out.println("获取房间详情-" + Thread.currentThread().getName());
@@ -107,12 +107,12 @@ public class RoomInfoServiceImpl extends ServiceImpl<RoomInfoMapper, RoomInfo>
             //8.查询杂费信息
             List<FeeValueVo> feeValueVoList = feeValueMapper.selectListByApartmentId(roomInfo.getApartmentId());
             //9.查询公寓信息
-           // ApartmentItemVo apartmentItemVo = apartmentInfoService.selectApartmentItemVoById(roomInfo.getApartmentId());
+            ApartmentItemVo apartmentItemVo = apartmentInfoService.selectApartmentItemVoById(roomInfo.getApartmentId());
 
             roomDetailVo = new RoomDetailVo();
             BeanUtils.copyProperties(roomInfo, roomDetailVo);
 
-           // roomDetailVo.setApartmentItemVo(apartmentItemVo);
+            roomDetailVo.setApartmentItemVo(apartmentItemVo);
             roomDetailVo.setGraphVoList(graphVoList);
             roomDetailVo.setAttrValueVoList(attrValueVoList);
             roomDetailVo.setFacilityInfoList(facilityInfoList);
@@ -122,7 +122,7 @@ public class RoomInfoServiceImpl extends ServiceImpl<RoomInfoMapper, RoomInfo>
             roomDetailVo.setLeaseTermList(leaseTermList);
 
 
-            stringObjectRedisTemplate.opsForValue().set(key, roomDetailVo);
+            redisTemplate.opsForValue().set(key, roomDetailVo);
         }
 
         //10.保存浏览历史
