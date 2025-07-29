@@ -1,3 +1,4 @@
+### Maven ###
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -38,3 +39,43 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Vue ###
+node_modules/
+dist/
+*.log
+*.sublime-workspace
+*.sublime-project
+*.iml
+*.ipr
+*.iws
+*.idea
+*.orig
+*.rej
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*.local
+*.lock
+*.log
+*.tmp
+*.tmp.*
+*.bak
+*.bak.*
+*.old
+*.old.*
+*.orig
+*.orig.*
+*.rej
+*.rej.*
+*.swp
+*.swp.*
+*.swo
+*.swo.*
+*.sublime-workspace
+*.sublime-project
+*.iml
+*.ipr
+*.iws
+*.idea
